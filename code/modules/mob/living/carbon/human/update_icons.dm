@@ -209,6 +209,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 		update_mutcolor()
 		//mutations
 		update_mutations_overlay()
+		//if they're standing on a
+		update_liquid_turf_overlays()
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
