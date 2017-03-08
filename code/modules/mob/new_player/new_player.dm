@@ -347,12 +347,13 @@
 			dat += "<a class='otherPosition' href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
 			break
 	dat += "</div></div>"
+	dat += "<center><b>Donator Roles</b></center>"
 
 	// Removing the old window method but leaving it here for reference
 	//src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 	// Added the new browser window method
-	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 440, 500)
+	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 440, 700)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(dat)
 	popup.open(0) // 0 is passed to open so that it doesn't use the onclose() proc

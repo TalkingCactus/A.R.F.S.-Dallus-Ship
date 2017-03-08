@@ -79,6 +79,11 @@ var/list/preferences_datums = list()
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None")
 
+	var/be_custom_mob = 0
+	var/custom_mob_name
+	var/custom_mob_gender
+	var/datum/spec_species/pref_mob = new /datum/spec_species()
+
 	var/list/custom_names = list("clown", "mime", "ai", "cyborg", "religion", "deity")
 
 		//Mob preview
@@ -98,10 +103,14 @@ var/list/preferences_datums = list()
 	var/job_engsec_med = 0
 	var/job_engsec_low = 0
 
+	var/job_nonhumanhelper_high = 0
+	var/job_nonhumanhelper_med = 0
+	var/job_nonhumanhelper_low = 0
+
 		// Want randomjob if preferences already filled - Donkie
 	var/userandomjob = 1 //defaults to 1 for fewer assistants
 
-	// 0 = character settings, 1 = game preferences
+	// 0 = character settings, 1 = game preferences, 2 = donator preferences
 	var/current_tab = 0
 
 		// OOC Metadata:
@@ -144,6 +153,7 @@ var/list/preferences_datums = list()
 	var/dat = "<center>"
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a> "
+	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Donator Preferences</a> "
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 
 	if(!path)
@@ -154,6 +164,12 @@ var/list/preferences_datums = list()
 	dat += "<HR>"
 
 	switch(current_tab)
+		if (2)
+			dat += "<b>Be Special Mob:</b><a href='?_src_=prefs;preference=be_custom_mob;task=input'>[be_custom_mob ? "Yes" : "No"]</a><BR>"
+			if(be_custom_mob)
+				dat += "<b>Special Mob Type:</b>"
+				dat += "<b>Special Mob Name:</b>"
+
 		if (0) // Character Settings#
 			if(path)
 				var/savefile/S = new /savefile(path)
